@@ -3,9 +3,12 @@ package ar.com.wolox.lucasdelatorre.training.activities;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.Utils;
@@ -19,6 +22,10 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        TextView tv = (TextView) findViewById(R.id.tv_terms);
+        tv.setText(Html.fromHtml(getString(R.string.login_terms)));
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
 
         Button clickLogin = (Button) findViewById(R.id.bn_login_login);
         Button clickSignup = (Button) findViewById(R.id.bn_login_signup);

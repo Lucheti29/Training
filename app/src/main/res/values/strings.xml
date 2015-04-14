@@ -8,7 +8,7 @@
     <string name="login_pass">Password</string>
     <string name="login_login">Log In</string>
     <string name="login_signup">Sign up</string>
-    <string name="login_bottom">By joining you agree to our <u>Terms &amp; Conditions</u></string>
+    <string name="login_terms"><u>By joining you agree to our <![CDATA[<a href="http://www.wolox.com.ar">Terms &amp; Conditions</a>]]></u></string>
     <string name="login_emptyuser">Username cannot be empty</string>
     <string name="login_emptypass">Password cannot be empty</string>
     <string name="login_invaliduser">Invalid username</string>
