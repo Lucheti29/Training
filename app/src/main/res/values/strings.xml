@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Training</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="login_label">Login</string>
+    <string name="login_user">Email</string>
+    <string name="login_pass">Password</string>
+    <string name="login_login">Log In</string>
+    <string name="login_signup">Sign up</string>
+    <string name="login_bottom">By joining you agree to our <u>Terms &amp; Conditions</u></string>
+    <string name="login_emptyuser">Username cannot be empty</string>
+    <string name="login_emptypass">Password cannot be empty</string>
+    <string name="login_invaliduser">Invalid username</string>
+    <string name="login_wronguser">Wrong username</string>
+    <string name="login_wrongpass">Wrong password</string>
 </resources>
