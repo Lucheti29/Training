@@ -52,7 +52,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_signup"
+        android:text="@string/signup_join"
         android:background="@color/bluewolox"
         android:id="@+id/bn_signup_accept"
         android:textColor="@color/white"
