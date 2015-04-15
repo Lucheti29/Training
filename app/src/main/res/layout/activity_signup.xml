@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".Signup" >
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/et_signup_user"
+        android:hint="@string/signup_user"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/lightgray" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_signup_pass"
+        android:hint="@string/signup_pass"
+        android:inputType="textPassword"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textColorHint="@color/lightgray" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_signup_cpass"
+        android:hint="@string/signup_cpass"
+        android:inputType="textPassword"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textColorHint="@color/lightgray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_terms"
+        android:id="@+id/tv_signup_terms"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/stronggray"
+        android:gravity="center"
+        android:textColorLink="@color/stronggray" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_signup"
+        android:background="@color/bluewolox"
+        android:id="@+id/bn_signup_accept"
+        android:textColor="@color/white"
+        android:layout_marginTop="35dp"
+        android:gravity="center" />
+
+</LinearLayout>

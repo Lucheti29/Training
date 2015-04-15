@@ -26,6 +26,15 @@
                 android:value=".Starter" />
         </activity>
 
+        <activity
+            android:name=".activities.Signup"
+            android:label="@string/signup_label"
+            android:theme="@style/SignupActionBarTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.Login" />
+        </activity>
+
     </application>
 
 </manifest>

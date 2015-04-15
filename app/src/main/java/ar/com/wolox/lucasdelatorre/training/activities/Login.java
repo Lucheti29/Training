@@ -1,6 +1,7 @@
 package ar.com.wolox.lucasdelatorre.training.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Html;
@@ -93,9 +94,8 @@ public class Login extends Activity {
     }
 
     private void openSignup() {
-        //TODO: Implement it when Signup.class exists
-        //Intent intent = new Intent(this, Signup.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Signup.class);
+        startActivity(intent);
     }
 
     private MessageType checkCredentials(String username, String password)
