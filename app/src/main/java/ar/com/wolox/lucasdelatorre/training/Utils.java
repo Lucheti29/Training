@@ -14,9 +14,7 @@ public class Utils {
 
     public static boolean validate(final String hex, final String stringPattern) {
         Pattern pattern = Pattern.compile(stringPattern);
-        Matcher matcher;
-
-        matcher = pattern.matcher(hex);
+        Matcher matcher = pattern.matcher(hex);
         return matcher.matches();
     }
 

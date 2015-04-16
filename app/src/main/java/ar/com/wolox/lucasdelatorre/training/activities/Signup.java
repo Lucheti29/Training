@@ -14,11 +14,14 @@ import ar.com.wolox.lucasdelatorre.training.Utils;
 
 public class Signup extends ActionBarActivity {
 
-    private TextView tvTerms;
-    private Button bnAccept;
-    private String etUsername;
-    private String etPassword;
-    private String etCPassword;
+    private TextView mTermsTv;
+    private Button mAcceptBn;
+    private EditText mUsernameEt;
+    private EditText mPasswordEt;
+    private EditText mCPasswordEt;
+    private String mUsername;
+    private String mPassword;
+    private String mCPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +34,21 @@ public class Signup extends ActionBarActivity {
     }
 
     private void setUi() {
-        tvTerms = (TextView) findViewById(R.id.tv_signup_terms);
-        bnAccept = (Button) findViewById(R.id.bn_signup_accept);
+        mTermsTv = (TextView) findViewById(R.id.tv_signup_terms);
+        mAcceptBn = (Button) findViewById(R.id.bn_signup_accept);
+        mUsernameEt = (EditText) findViewById(R.id.et_signup_user);
+        mPasswordEt = (EditText) findViewById(R.id.et_signup_pass);
+        mCPasswordEt = (EditText) findViewById(R.id.et_signup_cpass);
     }
 
     private void populate() {
-        tvTerms.setText(Html.fromHtml(getString(R.string.signup_terms)));
-        tvTerms.setMovementMethod(LinkMovementMethod.getInstance());
+        mTermsTv.setText(Html.fromHtml(getString(R.string.signup_terms)));
+        mTermsTv.setMovementMethod(LinkMovementMethod.getInstance());
         setTitle(getResources().getText(R.string.signup_label));
     }
 
     private void setListeners() {
-        bnAccept.setOnClickListener(new View.OnClickListener() {
+        mAcceptBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 attemptToSignup();
@@ -51,9 +57,13 @@ public class Signup extends ActionBarActivity {
     }
 
     private void attemptToSignup() {
-        getInputs();
+        mUsername = mUsernameEt.getText().toString();
+        mPassword = mPasswordEt.getText().toString();
+        mCPassword = mCPasswordEt.getText().toString();
 
-        if (userExists(etUsername)) {
+        if (!validateInputs()) return;
+
+        if (userExists()) {
             Utils.showToast(this, R.string.signup_userexists);
             return;
         }
@@ -61,35 +71,29 @@ public class Signup extends ActionBarActivity {
         //TODO: Register new user
     }
 
-    private void getInputs()
-    {
-        etUsername = ((EditText) findViewById(R.id.et_signup_user)).getText().toString();
-        etPassword = ((EditText) findViewById(R.id.et_signup_pass)).getText().toString();
-        etCPassword = ((EditText) findViewById(R.id.et_signup_cpass)).getText().toString();
+    //TODO: Implement it
+    private boolean userExists() {
+        return false;
     }
 
-    private boolean userExists(String username) {
-        boolean value = false;
-
-        if (etUsername.isEmpty()) {
+    private boolean validateInputs() {
+        if (mUsername.isEmpty()) {
             Utils.showToast(this, R.string.signup_emptyuser);
-        }
-        else if (etPassword.isEmpty()) {
+            return false;
+        } else if (mPassword.isEmpty()) {
             Utils.showToast(this, R.string.signup_emptypass);
-        }
-        else if (etCPassword.isEmpty()) {
+            return false;
+        } else if (mCPassword.isEmpty()) {
             Utils.showToast(this, R.string.signup_cpassnotmatch);
-        }
-        else if (!Utils.validate(etUsername, Utils.EMAIL_PATTERN)) {
+            return false;
+        } else if (!Utils.validate(mUsername, Utils.EMAIL_PATTERN)) {
             Utils.showToast(this, R.string.signup_invaliduser);
-        }
-        else if (!etPassword.equals(etCPassword)) {
+            return false;
+        } else if (!mPassword.equals(mCPassword)) {
             Utils.showToast(this, R.string.signup_cpassnotmatch);
+            return false;
         }
 
-        //TODO: Implement it
-        //If the user exists, value turns true
-
-        return value;
+        return true;
     }
 }
