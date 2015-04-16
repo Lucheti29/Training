@@ -11,21 +11,19 @@
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal|top"
-        >
+        android:layout_gravity="center_horizontal|top">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/foto_login" />
-
         </FrameLayout>
 
     <TextView
+        android:id="@+id/tv_terms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_terms"
-        android:id="@+id/tv_terms"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
@@ -49,50 +47,46 @@
             android:layout_gravity="center_horizontal|top">
 
             <ImageView
+                android:id="@+id/iv_login_logo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/iv_login_logo"
-                android:src="@drawable/login_logo"
-                android:layout_centerHorizontal="true" />
+                android:src="@drawable/login_logo" />
 
             <EditText
+                android:id="@+id/et_login_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/et_login_user"
                 android:layout_marginTop="20dp"
                 android:hint="@string/login_user"
                 android:textColor="@color/gray" />
 
             <EditText
+                android:id="@+id/et_login_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:id="@+id/et_login_pass"
                 android:layout_marginTop="20dp"
                 android:hint="@string/login_pass"
                 android:textColor="@color/gray"
                 android:inputType="textPassword" />
 
             <Button
+                android:id="@+id/bn_login_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login_login"
-                android:layout_marginTop="20dp"
-                android:id="@+id/bn_login_login" />
+                android:layout_marginTop="20dp" />
 
             <Button
+                android:id="@+id/bn_login_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login_signup"
                 android:background="@color/blue"
                 android:layout_marginTop="10dp"
-                android:id="@+id/bn_login_signup"
                 android:textColor="@color/white" />
-
             </LinearLayout>
-
     </FrameLayout>
-
 </RelativeLayout>

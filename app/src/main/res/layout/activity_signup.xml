@@ -12,17 +12,17 @@
         tools:context=".Signup" >
 
     <EditText
+        android:id="@+id/et_signup_user"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:id="@+id/et_signup_user"
         android:hint="@string/signup_user"
         android:layout_marginTop="20dp"
         android:textColorHint="@color/lightgray" />
 
     <EditText
+        android:id="@+id/et_signup_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_signup_pass"
         android:hint="@string/signup_pass"
         android:inputType="textPassword"
         android:layout_gravity="center_horizontal"
@@ -30,9 +30,9 @@
         android:textColorHint="@color/lightgray" />
 
     <EditText
+        android:id="@+id/et_signup_cpass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_signup_cpass"
         android:hint="@string/signup_cpass"
         android:inputType="textPassword"
         android:layout_gravity="center_horizontal"
@@ -40,21 +40,21 @@
         android:textColorHint="@color/lightgray" />
 
     <TextView
+        android:id="@+id/tv_signup_terms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_terms"
-        android:id="@+id/tv_signup_terms"
         android:layout_marginTop="35dp"
         android:textColor="@color/stronggray"
         android:gravity="center"
         android:textColorLink="@color/stronggray" />
 
     <Button
+        android:id="@+id/bn_signup_accept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/signup_join"
         android:background="@color/bluewolox"
-        android:id="@+id/bn_signup_accept"
         android:textColor="@color/white"
         android:layout_marginTop="35dp"
         android:gravity="center" />
