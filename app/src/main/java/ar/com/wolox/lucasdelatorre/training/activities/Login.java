@@ -81,8 +81,7 @@ public class Login extends Activity {
         //When the backend is implemented, it returns true
     }
 
-    private boolean validateInputs()
-    {
+    private boolean validateInputs() {
         if (mUsername.isEmpty()) {
             Utils.showToast(this, R.string.login_emptyuser);
             return false;
