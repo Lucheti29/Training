@@ -13,6 +13,7 @@ public class Utils {
     public static String PARSE_APP_ID = "kLRpYZ9OqIMFJ8zDyrqFlJhWEAabsO20bfZfBXgT";
     public static String PARSE_REST_API_HEADER = "X-Parse-REST-API-Key";
     public static String PARSE_REST_API_KEY = "c2Vi5MRQx5WxhppghBZy4KYIGjQ6U0CeLAY6UHXO";
+    public static String PARSE_TOKEN_HEADER = "X-Parse-Session-Token";
 
     public static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

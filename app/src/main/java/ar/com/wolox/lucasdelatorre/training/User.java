@@ -74,8 +74,5 @@ public class User {
         return location;
     }
 
-    public String getSessionToken()
-    {
-        return sessionToken;
-    }
+    public String getSessionToken() { return sessionToken; }
 }

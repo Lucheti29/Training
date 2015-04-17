@@ -12,4 +12,6 @@ public interface LoginService {
                       @Query("password") String password,
                       Callback<User> userCallback);
 
+    @GET("/1/users/me")
+    public void checkToken(Callback<User> userCallback);
 }

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.User;
 import ar.com.wolox.lucasdelatorre.training.Utils;
 import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapter;
+import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapterToken;
 import ar.com.wolox.lucasdelatorre.training.services.LoginService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -30,6 +32,7 @@ public class Login extends Activity {
     private EditText mPasswordEt;
     private String mUsername;
     private String mPassword;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,21 +110,34 @@ public class Login extends Activity {
     private void saveCredentials() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.login_username_key), mUsername);
-        editor.putString(getString(R.string.login_password_key), mPassword);
+        editor.putString(getString(R.string.login_username_key), mUser.getUsername());
+        editor.putString(getString(R.string.login_sessiontoken_key), mUser.getSessionToken());
         editor.commit();
     }
 
     private boolean isLogged() {
-        /*SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        String usernameSaved = sharedPref.getString(getString(R.string.login_username_key), "");
-        String passwordSaved = sharedPref.getString(getString(R.string.login_password_key), "");
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String token = sharedPref.getString(getString(R.string.login_sessiontoken_key), "");
 
-        if(usernameSaved.isEmpty() || passwordSaved.isEmpty()) return false;
+        LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
 
-        return true;*/
+        tokenTry.checkToken(mLoginCallbackToken);
+
         return false;
     }
+
+    Callback<User> mLoginCallbackToken = new Callback<User>() {
+        @Override
+        public void success(User user, Response response) {
+            openBoard();
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.d("Debug Login", error.getMessage());
+            error.printStackTrace();
+        }
+    };
 
     private void openBoard() {
         Intent intent = new Intent(this, Board.class);
@@ -139,6 +155,7 @@ public class Login extends Activity {
     Callback<User> mLoginCallback = new Callback<User>() {
         @Override
         public void success(User user, Response response) {
+            mUser = user;
             saveCredentials();
             openBoard();
         }
