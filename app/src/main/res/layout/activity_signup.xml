@@ -44,19 +44,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_terms"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/stronggray"
         android:gravity="center"
         android:textColorLink="@color/stronggray" />
 
+    <View android:layout_width="1dp" android:layout_height="25dp"/>
+
     <Button
         android:id="@+id/bn_signup_accept"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
+        android:layout_margin="4dp"
         android:text="@string/signup_join"
-        android:background="@color/bluewolox"
+        android:background="@drawable/button_shape_blue"
         android:textColor="@color/white"
-        android:layout_marginTop="35dp"
         android:gravity="center" />
 
 </LinearLayout>

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:autoLink="web"
+    android:background="@color/white"
     tools:context=".MainActivity" >
 
     <FrameLayout
@@ -16,7 +17,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/foto_login" />
+            android:src="@drawable/foto_login"
+            android:scaleType="center" />
         </FrameLayout>
 
     <TextView
@@ -72,21 +74,26 @@
                 android:textColor="@color/gray"
                 android:inputType="textPassword" />
 
+            <View android:layout_width="1dp" android:layout_height="20dp"/>
+
             <Button
                 android:id="@+id/bn_login_login"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/login_login" />
+                android:layout_height="38dp"
+                android:layout_margin="4dp"
+                android:text="@string/login_login"
+                android:background="@drawable/button_shape_white" />
+
+            <View android:layout_width="1dp" android:layout_height="8dp"/>
 
             <Button
                 android:id="@+id/bn_login_signup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="38dp"
+                android:layout_margin="4dp"
                 android:text="@string/login_signup"
-                android:background="@color/blue"
-                android:textColor="@color/white" />
+                android:background="@drawable/button_shape_blue"
+                android:textColor="@color/white"/>
             </LinearLayout>
     </FrameLayout>
 </RelativeLayout>
