@@ -1,7 +1,9 @@
 package ar.com.wolox.lucasdelatorre.training.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -11,7 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import ar.com.wolox.lucasdelatorre.training.R;
+import ar.com.wolox.lucasdelatorre.training.User;
 import ar.com.wolox.lucasdelatorre.training.Utils;
+import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapter;
+import ar.com.wolox.lucasdelatorre.training.services.LoginService;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Login extends Activity {
 
@@ -77,8 +85,8 @@ public class Login extends Activity {
     private void checkCredentials() {
         if (!validateInputs()) return;
 
-        //TODO: Check if the user exists and if the pass is correct
-        //When the backend is implemented, it returns true
+        LoginService loginTry = RestApiAdapter.getAdapter().create(LoginService.class);
+        loginTry.login(mUsername, mPassword, mLoginCallback);
     }
 
     private boolean validateInputs() {
@@ -96,13 +104,22 @@ public class Login extends Activity {
         return true;
     }
 
-    private void saveCredentials(String username, String password) {
-        //TODO: Save credentials
+    private void saveCredentials() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.login_username_key), mUsername);
+        editor.putString(getString(R.string.login_password_key), mPassword);
+        editor.commit();
     }
 
-    //TODO: implement it
-    private boolean isLogged()
-    {
+    private boolean isLogged() {
+        /*SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String usernameSaved = sharedPref.getString(getString(R.string.login_username_key), "");
+        String passwordSaved = sharedPref.getString(getString(R.string.login_password_key), "");
+
+        if(usernameSaved.isEmpty() || passwordSaved.isEmpty()) return false;
+
+        return true;*/
         return false;
     }
 
@@ -118,4 +135,17 @@ public class Login extends Activity {
         Intent intent = new Intent(this, Signup.class);
         startActivity(intent);
     }
+
+    Callback<User> mLoginCallback = new Callback<User>() {
+        @Override
+        public void success(User user, Response response) {
+            saveCredentials();
+            openBoard();
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            error.printStackTrace();
+        }
+    };
 }
