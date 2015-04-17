@@ -116,11 +116,11 @@ public class Login extends Activity {
     }
 
     private boolean isLogged() {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        /*SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         String token = sharedPref.getString(getString(R.string.login_sessiontoken_key), "");
 
         LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
-        tokenTry.checkToken(mLoginCallbackToken);
+        tokenTry.checkToken(mLoginCallbackToken);*/
 
         return false;
     }

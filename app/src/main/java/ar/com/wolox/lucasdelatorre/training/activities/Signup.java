@@ -10,7 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import ar.com.wolox.lucasdelatorre.training.R;
+import ar.com.wolox.lucasdelatorre.training.User;
 import ar.com.wolox.lucasdelatorre.training.Utils;
+import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapter;
+import ar.com.wolox.lucasdelatorre.training.services.SignupService;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Signup extends ActionBarActivity {
 
@@ -22,15 +28,22 @@ public class Signup extends ActionBarActivity {
     private String mUsername;
     private String mPassword;
     private String mCPassword;
+    private User mUser;
+    private ActionBarActivity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        init();
         setUi();
         populate();
         setListeners();
+    }
+
+    private void init() {
+        mActivity = this;
     }
 
     private void setUi() {
@@ -57,23 +70,19 @@ public class Signup extends ActionBarActivity {
     }
 
     private void attemptToSignup() {
+        //Check inputs before create a new User
         mUsername = mUsernameEt.getText().toString();
         mPassword = mPasswordEt.getText().toString();
         mCPassword = mCPasswordEt.getText().toString();
 
         if (!validateInputs()) return;
 
-        if (userExists()) {
-            Utils.showToast(this, R.string.signup_userexists);
-            return;
-        }
+        mUser = new User();
+        mUser.setUsername(mUsername);
+        mUser.setPassword(mPassword);
 
-        //TODO: Register new user
-    }
-
-    //TODO: Implement it
-    private boolean userExists() {
-        return false;
+        SignupService signupTry = RestApiAdapter.getAdapter().create(SignupService.class);
+        signupTry.signup(mUser, mSignupCallback);
     }
 
     private boolean validateInputs() {
@@ -96,4 +105,24 @@ public class Signup extends ActionBarActivity {
 
         return true;
     }
+
+    Callback<User> mSignupCallback = new Callback<User>() {
+        @Override
+        public void success(User user, Response response) {
+            Utils.showToast(mActivity, R.string.signup_successful);
+            finish();
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            User errorEntity = (User) error.getBody();
+
+            //Handle if the user exists
+            if(errorEntity.getCode().equalsIgnoreCase("202")) {
+                Utils.showToast(mActivity, R.string.signup_usernametaken);
+            } else {
+                Utils.showToast(mActivity, R.string.signup_usernametaken);
+            }
+        }
+    };
 }

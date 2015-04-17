@@ -17,6 +17,8 @@ public class User {
     private String updatedAt;
     private String password;
     private String sessionToken;
+    private String code;
+    private String error;
 
     public String getObjectId() {
         return objectId;
@@ -46,10 +48,6 @@ public class User {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getUpdatedAt() {
         return updatedAt;
     }
@@ -75,4 +73,28 @@ public class User {
     }
 
     public String getSessionToken() { return sessionToken; }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getCode() { return code; }
+
+    public String getError() { return error; }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 }
