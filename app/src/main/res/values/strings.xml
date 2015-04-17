@@ -16,7 +16,9 @@
     <string name="login_wrongpass">Wrong password</string>
     <string name="login_username_key">Username</string>
     <string name="login_sessiontoken_key">SessionToken</string>
-    <string name="login_error">Invalid username or password</string>
+    <string name="login_invaliduserpass">Invalid username or password</string>
+    <string name="login_invalidtoken">Invalid session</string>
+    <string name="login_error">Something went wrong</string>
 
     <string name="signup_label">Sign up</string>
     <string name="signup_user">Email</string>
