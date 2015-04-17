@@ -85,13 +85,6 @@ public class Login extends Activity {
         checkCredentials();
     }
 
-    private void checkCredentials() {
-        if (!validateInputs()) return;
-
-        LoginService loginTry = RestApiAdapter.getAdapter().create(LoginService.class);
-        loginTry.login(mUsername, mPassword, mLoginCallback);
-    }
-
     private boolean validateInputs() {
         if (mUsername.isEmpty()) {
             Utils.showToast(this, R.string.login_emptyuser);
@@ -115,35 +108,27 @@ public class Login extends Activity {
         editor.commit();
     }
 
+    private void checkCredentials() {
+        if (!validateInputs()) return;
+
+        LoginService loginTry = RestApiAdapter.getAdapter().create(LoginService.class);
+        loginTry.login(mUsername, mPassword, mLoginCallback);
+    }
+
     private boolean isLogged() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         String token = sharedPref.getString(getString(R.string.login_sessiontoken_key), "");
 
         LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
-
         tokenTry.checkToken(mLoginCallbackToken);
 
         return false;
     }
 
-    Callback<User> mLoginCallbackToken = new Callback<User>() {
-        @Override
-        public void success(User user, Response response) {
-            openBoard();
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            Log.d("Debug Login", error.getMessage());
-            error.printStackTrace();
-        }
-    };
-
     private void openBoard() {
         Intent intent = new Intent(this, Board.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-
         finish();
     }
 
@@ -162,6 +147,19 @@ public class Login extends Activity {
 
         @Override
         public void failure(RetrofitError error) {
+            error.printStackTrace();
+        }
+    };
+
+    Callback<User> mLoginCallbackToken = new Callback<User>() {
+        @Override
+        public void success(User user, Response response) {
+            openBoard();
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.d("Debug Login", error.getMessage());
             error.printStackTrace();
         }
     };
