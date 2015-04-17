@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,18 +32,24 @@ public class Login extends Activity {
     private String mUsername;
     private String mPassword;
     private User mUser;
+    private Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (isLogged()) openBoard();
+        isLogged();
 
         setContentView(R.layout.activity_login);
 
+        init();
         setUi();
         populate();
         setListeners();
+    }
+
+    private void init() {
+        mActivity = this;
     }
 
     private void setUi() {
@@ -115,14 +120,12 @@ public class Login extends Activity {
         loginTry.login(mUsername, mPassword, mLoginCallback);
     }
 
-    private boolean isLogged() {
-        /*SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+    private void isLogged() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         String token = sharedPref.getString(getString(R.string.login_sessiontoken_key), "");
 
         LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
-        tokenTry.checkToken(mLoginCallbackToken);*/
-
-        return false;
+        tokenTry.checkToken(mLoginCallbackToken);
     }
 
     private void openBoard() {
@@ -147,7 +150,13 @@ public class Login extends Activity {
 
         @Override
         public void failure(RetrofitError error) {
-            error.printStackTrace();
+            User errorEntity = (User) error.getBody();
+
+            if(errorEntity.getCode().equalsIgnoreCase("101")) {
+                Utils.showToast(mActivity, R.string.login_invaliduserpass);
+            } else {
+                Utils.showToast(mActivity, R.string.login_error);
+            }
         }
     };
 
@@ -159,8 +168,13 @@ public class Login extends Activity {
 
         @Override
         public void failure(RetrofitError error) {
-            Log.d("Debug Login", error.getMessage());
-            error.printStackTrace();
+            User errorEntity = (User) error.getBody();
+
+            if (errorEntity.getCode().equalsIgnoreCase("209")) {
+                Utils.showToast(mActivity, R.string.login_invalidtoken);
+            } else {
+                Utils.showToast(mActivity, R.string.login_error);
+            }
         }
     };
 }
