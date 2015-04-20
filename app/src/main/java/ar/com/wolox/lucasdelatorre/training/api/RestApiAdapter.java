@@ -1,6 +1,6 @@
 package ar.com.wolox.lucasdelatorre.training.api;
 
-import ar.com.wolox.lucasdelatorre.training.Utils;
+import ar.com.wolox.lucasdelatorre.training.Config;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 
@@ -10,14 +10,13 @@ public class RestApiAdapter {
         RequestInterceptor requestInterceptor = new RequestInterceptor() {
             @Override
             public void intercept(RequestFacade request) {
-                request.addHeader(Utils.PARSE_APP_HEADER, Utils.PARSE_APP_ID);
-                request.addHeader(Utils.PARSE_REST_API_HEADER, Utils.PARSE_REST_API_KEY);
+                request.addHeader(Config.PARSE_APP_HEADER, Config.PARSE_APP_ID);
+                request.addHeader(Config.PARSE_REST_API_HEADER, Config.PARSE_REST_API_KEY);
             }
         };
 
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(Utils.URL)
+                .setEndpoint(Config.URL)
                 .setRequestInterceptor(requestInterceptor)
                 .build();
 

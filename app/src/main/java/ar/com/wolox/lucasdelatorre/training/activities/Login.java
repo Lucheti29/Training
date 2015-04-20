@@ -33,6 +33,7 @@ public class Login extends Activity {
     private String mPassword;
     private User mUser;
     private Activity mActivity;
+    private String mSessionTokenKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class Login extends Activity {
 
     private void init() {
         mActivity = this;
+        mSessionTokenKey = getString(R.string.login_sessiontoken_key);
     }
 
     private void setUi() {
@@ -122,7 +124,7 @@ public class Login extends Activity {
 
     private void isLogged() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        String token = sharedPref.getString(getString(R.string.login_sessiontoken_key), "");
+        String token = sharedPref.getString(mSessionTokenKey, "");
 
         LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
         tokenTry.checkToken(mLoginCallbackToken);
@@ -152,7 +154,7 @@ public class Login extends Activity {
         public void failure(RetrofitError error) {
             User errorEntity = (User) error.getBody();
 
-            if(errorEntity.getCode().equalsIgnoreCase("101")) {
+            if(errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_AUTH)) {
                 Utils.showToast(mActivity, R.string.login_invaliduserpass);
             } else {
                 Utils.showToast(mActivity, R.string.login_error);
@@ -170,7 +172,7 @@ public class Login extends Activity {
         public void failure(RetrofitError error) {
             User errorEntity = (User) error.getBody();
 
-            if (errorEntity.getCode().equalsIgnoreCase("209")) {
+            if (errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_TOKEN)) {
                 Utils.showToast(mActivity, R.string.login_invalidtoken);
             } else {
                 Utils.showToast(mActivity, R.string.login_error);
