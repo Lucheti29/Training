@@ -7,9 +7,12 @@ import retrofit.http.Query;
 
 public interface LoginService {
 
+    final static String sUsername = "username";
+    final static String sPassword = "password";
+
     @GET("/1/login")
-    public void login(@Query("username") String email,
-                      @Query("password") String password,
+    public void login(@Query(sUsername) String email,
+                      @Query(sPassword) String password,
                       Callback<User> userCallback);
 
     @GET("/1/users/me")
