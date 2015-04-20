@@ -49,13 +49,13 @@
         android:gravity="center"
         android:textColorLink="@color/stronggray" />
 
-    <View android:layout_width="1dp" android:layout_height="25dp"/>
-
     <Button
         android:id="@+id/bn_signup_accept"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:layout_margin="4dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="25dp"
         android:text="@string/signup_join"
         android:background="@drawable/button_shape_blue"
         android:textColor="@color/white"
