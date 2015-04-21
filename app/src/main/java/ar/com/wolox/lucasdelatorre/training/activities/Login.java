@@ -154,7 +154,7 @@ public class Login extends Activity {
         public void failure(RetrofitError error) {
             User errorEntity = (User) error.getBody();
 
-            if(errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_AUTH)) {
+            if (errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_AUTH)) {
                 Utils.showToast(mActivity, R.string.login_invaliduserpass);
             } else {
                 Utils.showToast(mActivity, R.string.login_error);
