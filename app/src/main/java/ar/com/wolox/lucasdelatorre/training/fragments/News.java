@@ -11,6 +11,11 @@ import ar.com.wolox.lucasdelatorre.training.R;
 
 public class News extends Fragment {
 
+    /*        //TODO: Implement it
+        ListView listView = (ListView) findViewById(android.R.id.list);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.attachToListView(listView);*/
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_news,container,false);
