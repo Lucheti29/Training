@@ -30,6 +30,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import ar.com.wolox.lucasdelatorre.training.R;
+
 public class SlidingTabLayout extends HorizontalScrollView {
     /**
      * Allows complete control over the colors drawn in the tab layout. Set with
@@ -143,7 +145,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
                 outValue, true);
         textView.setBackgroundResource(outValue.resourceId);
-        //textView.setAllCaps(true);
+        textView.setAllCaps(true);
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
         textView.setPadding(padding, padding, padding, padding);
@@ -167,6 +169,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             //TODO: Aca setea el titulo por medio del adapter
             tabTitleView.setText(adapter.getPageTitle(i));
+            tabTitleView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news, 0, 0, 0);
+
             tabView.setOnClickListener(tabClickListener);
             String desc = mContentDescriptions.get(i, null);
             if (desc != null) {
