@@ -18,6 +18,7 @@
     <item name="stronggray" type="color">#FF525352</item>
     <item name="black" type="color">#FF000000</item>
     <item name="border" type="color">#FFD6D6D5</item>
+    <item name="greenwolox" type="color">#FF88B85E</item>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -38,5 +39,6 @@
         <item>@color/stronggray</item>
         <item>@color/black</item>
         <item>@color/border</item>
+        <item>@color/greenwolox</item>
     </integer-array>
 </resources>
