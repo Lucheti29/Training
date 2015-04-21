@@ -28,9 +28,8 @@ public class Board extends ActionBarActivity {
     }
 
     private void init() {
-        CharSequence titles[] = {"Home","Events"};
-        //Number of tabs -> 2
-        mAdapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles, 2);
+        CharSequence titles[] = {"NEWS","PROFILE"};
+        mAdapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles, titles.length);
     }
 
     private void setUi() {

@@ -5,4 +5,23 @@
     android:background="@color/white"
     android:elevation="2dp"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/ig_board_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/topbar_logo" />
+
+    <TextView
+        android:id="@+id/tv_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/wolox_title"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    </android.support.v7.widget.Toolbar>
