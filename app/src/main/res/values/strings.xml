@@ -29,4 +29,7 @@
     <string name="signup_invaliduser">Invalid email</string>
     <string name="signup_join">Join</string>
     <string name="signup_terms"><u>By joining you agree to our <![CDATA[<a href="http://www.wolox.com.ar">Terms &amp; Conditions</a>]]></u></string>
+    <string name="signup_successful">Signup was successful</string>
+    <string name="signup_usernametaken">This email is already taken</string>
+    <string name="signup_error">Something went wrong</string>
 </resources>

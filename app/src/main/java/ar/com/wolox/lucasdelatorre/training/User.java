@@ -20,6 +20,11 @@ public class User {
     private String code;
     private String error;
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getObjectId() {
         return objectId;
     }
