@@ -33,7 +33,6 @@ public class Login extends Activity {
     private String mPassword;
     private User mUser;
     private Activity mActivity;
-    private String mSessionTokenKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class Login extends Activity {
 
     private void init() {
         mActivity = this;
-        mSessionTokenKey = getString(R.string.login_sessiontoken_key);
     }
 
     private void setUi() {
@@ -110,13 +108,32 @@ public class Login extends Activity {
     private void saveCredentials() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.login_username_key), mUser.getUsername());
-        editor.putString(getString(R.string.login_sessiontoken_key), mUser.getSessionToken());
+        editor.putString(Utils.TOKEN_KEY, mUser.getSessionToken());
         editor.commit();
     }
 
     private void checkCredentials() {
         if (!validateInputs()) return;
+
+        Callback<User> mLoginCallback = new Callback<User>() {
+            @Override
+            public void success(User user, Response response) {
+                mUser = user;
+                saveCredentials();
+                openBoard();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                User errorEntity = (User) error.getBody();
+
+                if (errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_AUTH)) {
+                    Utils.showToast(mActivity, R.string.login_invaliduserpass);
+                } else {
+                    Utils.showToast(mActivity, R.string.login_error);
+                }
+            }
+        };
 
         LoginService loginTry = RestApiAdapter.getAdapter().create(LoginService.class);
         loginTry.login(mUsername, mPassword, mLoginCallback);
@@ -124,7 +141,27 @@ public class Login extends Activity {
 
     private void isLogged() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        String token = sharedPref.getString(mSessionTokenKey, "");
+        String token = sharedPref.getString(Utils.TOKEN_KEY, "");
+
+        if (token.isEmpty()) { return; }
+
+        Callback<User> mLoginCallbackToken = new Callback<User>() {
+            @Override
+            public void success(User user, Response response) {
+                openBoard();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                User errorEntity = (User) error.getBody();
+
+                if (errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_TOKEN)) {
+                    Utils.showToast(mActivity, R.string.login_invalidtoken);
+                } else {
+                    Utils.showToast(mActivity, R.string.login_error);
+                }
+            }
+        };
 
         LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
         tokenTry.checkToken(mLoginCallbackToken);
@@ -141,42 +178,4 @@ public class Login extends Activity {
         Intent intent = new Intent(this, Signup.class);
         startActivity(intent);
     }
-
-    Callback<User> mLoginCallback = new Callback<User>() {
-        @Override
-        public void success(User user, Response response) {
-            mUser = user;
-            saveCredentials();
-            openBoard();
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            User errorEntity = (User) error.getBody();
-
-            if (errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_AUTH)) {
-                Utils.showToast(mActivity, R.string.login_invaliduserpass);
-            } else {
-                Utils.showToast(mActivity, R.string.login_error);
-            }
-        }
-    };
-
-    Callback<User> mLoginCallbackToken = new Callback<User>() {
-        @Override
-        public void success(User user, Response response) {
-            openBoard();
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            User errorEntity = (User) error.getBody();
-
-            if (errorEntity.getCode().equalsIgnoreCase(Utils.CODE_INVALID_TOKEN)) {
-                Utils.showToast(mActivity, R.string.login_invalidtoken);
-            } else {
-                Utils.showToast(mActivity, R.string.login_error);
-            }
-        }
-    };
 }
