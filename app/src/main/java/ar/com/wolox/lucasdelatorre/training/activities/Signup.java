@@ -78,7 +78,8 @@ public class Signup extends ActionBarActivity {
 
         User user = new User(mUsername, mPassword);
 
-        Callback<User> mSignupCallback = new Callback<User>() {
+        SignupService signupTry = RestApiAdapter.getAdapter().create(SignupService.class);
+        signupTry.signup(user, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
                 Utils.showToast(mActivity, R.string.signup_successful);
@@ -96,10 +97,7 @@ public class Signup extends ActionBarActivity {
                     Utils.showToast(mActivity, R.string.signup_usernametaken);
                 }
             }
-        };
-
-        SignupService signupTry = RestApiAdapter.getAdapter().create(SignupService.class);
-        signupTry.signup(user, mSignupCallback);
+        });
     }
 
     private boolean validateInputs() {
