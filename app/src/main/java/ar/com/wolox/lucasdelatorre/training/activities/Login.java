@@ -115,7 +115,8 @@ public class Login extends Activity {
     private void checkCredentials() {
         if (!validateInputs()) return;
 
-        Callback<User> mLoginCallback = new Callback<User>() {
+        LoginService loginTry = RestApiAdapter.getAdapter().create(LoginService.class);
+        loginTry.login(mUsername, mPassword, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
                 mUser = user;
@@ -133,10 +134,7 @@ public class Login extends Activity {
                     Utils.showToast(mActivity, R.string.login_error);
                 }
             }
-        };
-
-        LoginService loginTry = RestApiAdapter.getAdapter().create(LoginService.class);
-        loginTry.login(mUsername, mPassword, mLoginCallback);
+        });
     }
 
     private void isLogged() {
@@ -145,7 +143,8 @@ public class Login extends Activity {
 
         if (token.isEmpty()) { return; }
 
-        Callback<User> mLoginCallbackToken = new Callback<User>() {
+        LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
+        tokenTry.checkToken(new Callback<User>() {
             @Override
             public void success(User user, Response response) {
                 openBoard();
@@ -161,10 +160,7 @@ public class Login extends Activity {
                     Utils.showToast(mActivity, R.string.login_error);
                 }
             }
-        };
-
-        LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
-        tokenTry.checkToken(mLoginCallbackToken);
+        });
     }
 
     private void openBoard() {
