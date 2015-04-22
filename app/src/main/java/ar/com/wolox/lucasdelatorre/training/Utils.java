@@ -1,6 +1,7 @@
 package ar.com.wolox.lucasdelatorre.training;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -18,6 +19,11 @@ public class Utils {
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    public static final int[] TAB_IMAGES = {
+            R.drawable.icon_news,
+            R.drawable.icon_profile
+    };
+
     public static boolean validate(final String hex, final String stringPattern) {
         Pattern pattern = Pattern.compile(stringPattern);
         Matcher matcher = pattern.matcher(hex);
@@ -28,5 +34,13 @@ public class Utils {
         Toast.makeText(activity.getApplicationContext(),
                 activity.getResources().getString(id),
                 Toast.LENGTH_SHORT).show();
+    }
+
+    //TODO: Unhardcode
+    public static int getColorState(boolean state) {
+        if (state) {
+            return Color.parseColor("#88B85E");
+        }
+        return Color.parseColor("#959692");
     }
 }
