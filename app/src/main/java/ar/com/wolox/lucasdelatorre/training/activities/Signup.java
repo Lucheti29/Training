@@ -91,7 +91,7 @@ public class Signup extends ActionBarActivity {
                 User errorEntity = (User) error.getBody();
 
                 //Handle if the user exists
-                if (errorEntity.getCode().equalsIgnoreCase("202")) {
+                if (errorEntity.getCode().equalsIgnoreCase(Utils.CODE_USER_TAKEN)) {
                     Utils.showToast(mActivity, R.string.signup_usernametaken);
                 } else {
                     Utils.showToast(mActivity, R.string.signup_usernametaken);

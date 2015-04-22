@@ -10,6 +10,7 @@ public class Utils {
 
     public final static String CODE_INVALID_AUTH = "101";
     public final static String CODE_INVALID_TOKEN = "209";
+    public final static String CODE_USER_TAKEN = "202";
 
     public final static String TOKEN_KEY = "SessionToken";
 
