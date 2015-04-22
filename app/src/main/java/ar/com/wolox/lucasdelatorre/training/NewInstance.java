@@ -27,6 +27,15 @@ public class NewInstance {
         news.add(new NewInstance("Harry", "San Diego"));
         news.add(new NewInstance("Marla", "San Francisco"));
         news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Sarah", "San Marco"));
+
         return news;
     }
 
