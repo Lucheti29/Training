@@ -27,36 +27,36 @@
             android:id="@+id/et_signup_user"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="@string/signup_user"
             android:layout_marginTop="20dp"
+            android:hint="@string/signup_user"
             android:textColorHint="@color/lightgray" />
 
         <EditText
             android:id="@+id/et_signup_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/signup_pass"
-            android:inputType="textPassword"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:hint="@string/signup_pass"
+            android:inputType="textPassword"
             android:textColorHint="@color/lightgray" />
 
         <EditText
             android:id="@+id/et_signup_cpass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/signup_cpass"
-            android:inputType="textPassword"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:hint="@string/signup_cpass"
+            android:inputType="textPassword"
             android:textColorHint="@color/lightgray" />
 
         <TextView
             android:id="@+id/tv_signup_terms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_terms"
             android:layout_marginTop="30dp"
+            android:text="@string/login_terms"
             android:textColor="@color/stronggray"
             android:gravity="center"
             android:textColorLink="@color/stronggray" />
