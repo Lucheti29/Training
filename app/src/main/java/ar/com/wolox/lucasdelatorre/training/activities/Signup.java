@@ -28,7 +28,6 @@ public class Signup extends ActionBarActivity {
     private String mUsername;
     private String mPassword;
     private String mCPassword;
-    private User mUser;
     private ActionBarActivity mActivity;
 
     @Override
@@ -77,12 +76,30 @@ public class Signup extends ActionBarActivity {
 
         if (!validateInputs()) return;
 
-        mUser = new User();
-        mUser.setUsername(mUsername);
-        mUser.setPassword(mPassword);
+        User user = new User(mUsername, mPassword);
+
+        Callback<User> mSignupCallback = new Callback<User>() {
+            @Override
+            public void success(User user, Response response) {
+                Utils.showToast(mActivity, R.string.signup_successful);
+                finish();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                User errorEntity = (User) error.getBody();
+
+                //Handle if the user exists
+                if (errorEntity.getCode().equalsIgnoreCase("202")) {
+                    Utils.showToast(mActivity, R.string.signup_usernametaken);
+                } else {
+                    Utils.showToast(mActivity, R.string.signup_usernametaken);
+                }
+            }
+        };
 
         SignupService signupTry = RestApiAdapter.getAdapter().create(SignupService.class);
-        signupTry.signup(mUser, mSignupCallback);
+        signupTry.signup(user, mSignupCallback);
     }
 
     private boolean validateInputs() {
@@ -105,24 +122,4 @@ public class Signup extends ActionBarActivity {
 
         return true;
     }
-
-    Callback<User> mSignupCallback = new Callback<User>() {
-        @Override
-        public void success(User user, Response response) {
-            Utils.showToast(mActivity, R.string.signup_successful);
-            finish();
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            User errorEntity = (User) error.getBody();
-
-            //Handle if the user exists
-            if(errorEntity.getCode().equalsIgnoreCase("202")) {
-                Utils.showToast(mActivity, R.string.signup_usernametaken);
-            } else {
-                Utils.showToast(mActivity, R.string.signup_usernametaken);
-            }
-        }
-    };
 }
