@@ -8,6 +8,11 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
+    public final static String CODE_INVALID_AUTH = "101";
+    public final static String CODE_INVALID_TOKEN = "209";
+
+    public final static String TOKEN_KEY = "SessionToken";
+
     public static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
