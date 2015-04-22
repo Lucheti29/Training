@@ -47,7 +47,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private static final int TITLE_OFFSET_DIPS = 24;
-    private static final int TAB_VIEW_PADDING_DIPS = 16;
+    private static final int TAB_VIEW_PADDING_DIPS = 12;
+    private static final int TAB_VIEW_PADDING_DIPS_BOTTOM = 6;
     private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
 
     private int mTitleOffset;
@@ -147,8 +148,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
         textView.setBackgroundResource(outValue.resourceId);
         textView.setAllCaps(true);
 
-        int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
-        textView.setPadding(padding, padding, padding, padding);
+        int padding = (int) (TAB_VIEW_PADDING_DIPS *
+                getResources().getDisplayMetrics().density);
+        int padding_bottom = (int) (TAB_VIEW_PADDING_DIPS_BOTTOM *
+                getResources().getDisplayMetrics().density);
+
+        textView.setPadding(padding, padding, padding, padding_bottom);
 
         return textView;
     }
@@ -169,7 +174,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             //TODO: Aca setea el titulo por medio del adapter
             tabTitleView.setText(adapter.getPageTitle(i));
-            tabTitleView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_news, 0, 0, 0);
+            tabTitleView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_news, 0, 0);
 
             tabView.setOnClickListener(tabClickListener);
             String desc = mContentDescriptions.get(i, null);
