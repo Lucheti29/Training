@@ -14,6 +14,9 @@
     <string name="login_invaliduser">Invalid username</string>
     <string name="login_wronguser">Wrong username</string>
     <string name="login_wrongpass">Wrong password</string>
+    <string name="login_invaliduserpass">Invalid username or password</string>
+    <string name="login_invalidtoken">Invalid session</string>
+    <string name="login_error">Something went wrong</string>
 
     <string name="signup_label">Sign up</string>
     <string name="signup_user">Email</string>
@@ -26,4 +29,7 @@
     <string name="signup_invaliduser">Invalid email</string>
     <string name="signup_join">Join</string>
     <string name="signup_terms"><u>By joining you agree to our <![CDATA[<a href="http://www.wolox.com.ar">Terms &amp; Conditions</a>]]></u></string>
+    <string name="signup_successful">Signup was successful</string>
+    <string name="signup_usernametaken">This email is already taken</string>
+    <string name="signup_error">Something went wrong</string>
 </resources>
