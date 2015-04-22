@@ -11,7 +11,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     CharSequence Titles[];
     int NumbOfTabs;
-    String Images[];
 
     public ViewPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
         super(fm);
@@ -34,10 +33,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return Titles[position];
-    }
-
-    public String getImagePath(int position) {
-        return Images[position];
     }
 
     @Override
