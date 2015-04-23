@@ -41,14 +41,14 @@ public class Login extends Activity {
 
         openBoard();
 
-        /*isLogged();
+        isLogged();
 
         setContentView(R.layout.activity_login);
 
         init();
         setUi();
         populate();
-        setListeners();*/
+        setListeners();
     }
 
     private void init() {
