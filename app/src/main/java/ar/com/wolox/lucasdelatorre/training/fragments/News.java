@@ -1,13 +1,18 @@
 package ar.com.wolox.lucasdelatorre.training.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -21,13 +26,8 @@ public class News extends Fragment {
     private ListView mListView;
     private TextView mListEmptyTv;
     private String mTextListEmpty;
-
-    /*
-    //TODO: Implement it
-    ListView listView = (ListView) findViewById(android.R.id.list);
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.attachToListView(listView);
-    */
+    private FloatingActionButton mFab;
+    private SwipeRefreshLayout mSwipeView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,7 +35,11 @@ public class News extends Fragment {
 
         init();
         setUi();
-        populateListView();
+
+        mFab.attachToListView(mListView);
+
+        populate();
+        setListeners();
 
         return mView;
     }
@@ -47,9 +51,11 @@ public class News extends Fragment {
     private void setUi() {
         mListView = (ListView) mView.findViewById(R.id.lv_news);
         mListEmptyTv = (TextView) mView.findViewById(R.id.tv_listempty);
+        mFab = (FloatingActionButton) mView.findViewById(R.id.fab);
+        mSwipeView = (SwipeRefreshLayout) mView.findViewById(R.id.swipe);
     }
 
-    private void populateListView() {
+    private void populate() {
         ArrayList<NewsInstance> arrayOfUsers = NewsInstance.getUsers();
 
         if (!arrayOfUsers.isEmpty()) {
@@ -58,5 +64,34 @@ public class News extends Fragment {
         } else {
             mListEmptyTv.setText(mTextListEmpty);
         }
+    }
+
+    private void setListeners() {
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition =
+                        (mListView == null || mListView.getChildCount() == 0) ?
+                                0 : mListView.getChildAt(0).getTop();
+
+                if (firstVisibleItem == 0 && topRowVerticalPosition >= 0) {
+                    mSwipeView.setEnabled(true);
+
+                    //TODO: When the callback is implemented, delete this
+                    // --------------------
+                    new Handler().postDelayed(new Runnable() {
+                        @Override public void run() {
+                            mSwipeView.setRefreshing(false);
+                        }
+                    }, 10000);
+                    // --------------------
+                }
+            }
+        });
     }
 }
