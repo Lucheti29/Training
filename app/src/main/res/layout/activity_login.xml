@@ -60,7 +60,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="@string/login_user"
-                style="@style/EditTextLogin" />
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/gray" />
 
             <EditText
                 android:id="@+id/et_login_pass"
@@ -68,20 +70,29 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/login_pass"
                 android:inputType="textPassword"
-                style="@style/EditTextLogin" />
-
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/gray" />
             <Button
                 android:id="@+id/bn_login_login"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
-                style="@style/ButtonLogin" />
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="@string/login_login"
+                android:background="@drawable/button_shape_white" />
 
             <Button
                 android:id="@+id/bn_login_signup"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
-                style="@style/ButtonSignup" />
-
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="@string/login_signup"
+                android:background="@drawable/button_shape_blue"
+                android:textColor="@color/white" />
             </LinearLayout>
     </FrameLayout>
 </RelativeLayout>
