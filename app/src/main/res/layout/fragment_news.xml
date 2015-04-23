@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ListView
         android:id="@+id/lv_news"
@@ -21,10 +22,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@drawable/like_on"
+            android:src="@drawable/plus_news"
             fab:fab_colorNormal="@color/greenwolox"
             fab:fab_colorPressed="@color/greenwolox"
             fab:fab_colorRipple="@color/greenwolox" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/tv_listempty"
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
