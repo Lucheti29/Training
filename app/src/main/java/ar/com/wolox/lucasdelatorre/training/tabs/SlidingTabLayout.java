@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package ar.com.wolox.lucasdelatorre.training.supportabs;
+package ar.com.wolox.lucasdelatorre.training.tabs;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -33,7 +31,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.Utils;
 
 public class SlidingTabLayout extends HorizontalScrollView {

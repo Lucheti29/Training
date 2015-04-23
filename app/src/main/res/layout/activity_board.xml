@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent" />
 
-       <ar.com.wolox.lucasdelatorre.training.supportabs.SlidingTabLayout
+       <ar.com.wolox.lucasdelatorre.training.tabs.SlidingTabLayout
          android:id="@+id/tabs"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"

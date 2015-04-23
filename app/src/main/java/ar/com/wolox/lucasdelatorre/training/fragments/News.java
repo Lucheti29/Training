@@ -10,8 +10,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ar.com.wolox.lucasdelatorre.training.NewInstance;
-import ar.com.wolox.lucasdelatorre.training.NewsAdapter;
+import ar.com.wolox.lucasdelatorre.training.instances.NewInstance;
+import ar.com.wolox.lucasdelatorre.training.adapters.NewsAdapter;
 import ar.com.wolox.lucasdelatorre.training.R;
 
 public class News extends Fragment {

@@ -1,4 +1,4 @@
-package ar.com.wolox.lucasdelatorre.training;
+package ar.com.wolox.lucasdelatorre.training.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import ar.com.wolox.lucasdelatorre.training.R;
+import ar.com.wolox.lucasdelatorre.training.instances.NewInstance;
 
 public class NewsAdapter extends ArrayAdapter<NewInstance> {
 
