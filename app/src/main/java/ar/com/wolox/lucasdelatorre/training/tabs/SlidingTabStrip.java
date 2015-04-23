@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ar.com.wolox.lucasdelatorre.training.supportabs;
+package ar.com.wolox.lucasdelatorre.training.tabs;
 
 import android.R;
 import android.content.Context;

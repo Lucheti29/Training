@@ -1,4 +1,4 @@
-package ar.com.wolox.lucasdelatorre.training;
+package ar.com.wolox.lucasdelatorre.training.instances;
 
 import java.util.ArrayList;
 

@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import ar.com.wolox.lucasdelatorre.training.R;
-import ar.com.wolox.lucasdelatorre.training.supportabs.SlidingTabLayout;
-import ar.com.wolox.lucasdelatorre.training.supportabs.ViewPagerAdapter;
+import ar.com.wolox.lucasdelatorre.training.tabs.SlidingTabLayout;
+import ar.com.wolox.lucasdelatorre.training.adapters.ViewPagerAdapter;
 
 
 public class Board extends ActionBarActivity {
