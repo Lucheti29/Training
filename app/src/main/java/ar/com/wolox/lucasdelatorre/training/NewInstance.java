@@ -24,17 +24,17 @@ public class NewInstance {
 
     public static ArrayList<NewInstance> getUsers() {
         ArrayList<NewInstance> news = new ArrayList<>();
-        news.add(new NewInstance("Harry", "San Diego"));
-        news.add(new NewInstance("Marla", "San Francisco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
-        news.add(new NewInstance("Sarah", "San Marco"));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
+        news.add(new NewInstance("Ali Connors", "I'll be in your neighborhood doing errands ..."));
 
         return news;
     }
