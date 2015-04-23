@@ -6,6 +6,7 @@
     <style name="SignupActionBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:homeAsUpIndicator">@drawable/topbar_logo</item>
         <item name="android:actionBarStyle">@style/SignupActionBar</item>
+        <item name="android:background">@color/white</item>
 
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/SignupActionBar</item>

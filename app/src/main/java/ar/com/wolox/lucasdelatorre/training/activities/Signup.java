@@ -1,5 +1,6 @@
 package ar.com.wolox.lucasdelatorre.training.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -29,6 +30,7 @@ public class Signup extends ActionBarActivity {
     private String mPassword;
     private String mCPassword;
     private ActionBarActivity mActivity;
+    private View mDivider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +53,18 @@ public class Signup extends ActionBarActivity {
         mUsernameEt = (EditText) findViewById(R.id.et_signup_user);
         mPasswordEt = (EditText) findViewById(R.id.et_signup_pass);
         mCPasswordEt = (EditText) findViewById(R.id.et_signup_cpass);
+        mDivider = findViewById(R.id.view_divider);
     }
 
     private void populate() {
         mTermsTv.setText(Html.fromHtml(getString(R.string.signup_terms)));
         mTermsTv.setMovementMethod(LinkMovementMethod.getInstance());
         setTitle(getResources().getText(R.string.signup_label));
+
+        if (Build.VERSION.SDK_INT == 21) {
+            mDivider.setElevation(5);
+        }
+        //Else -> Implement image
     }
 
     private void setListeners() {
