@@ -25,7 +25,7 @@ public class NewsAdapter extends ArrayAdapter<NewInstance> {
         }
 
         TextView tvName = (TextView) convertView.findViewById(R.id.tv_new_title);
-        TextView tvHome = (TextView) convertView.findViewById(R.id.tv_new_content);
+        TextView tvHome = (TextView) convertView.findViewById(R.id.tv_new_description);
 
         tvName.setText(singleNew.title);
         tvHome.setText(singleNew.description);
