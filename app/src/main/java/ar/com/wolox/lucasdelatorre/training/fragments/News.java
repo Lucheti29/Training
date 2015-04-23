@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ar.com.wolox.lucasdelatorre.training.instances.NewInstance;
+import ar.com.wolox.lucasdelatorre.training.instances.NewsInstance;
 import ar.com.wolox.lucasdelatorre.training.adapters.NewsAdapter;
 import ar.com.wolox.lucasdelatorre.training.R;
 
@@ -18,6 +19,8 @@ public class News extends Fragment {
 
     private View mView;
     private ListView mListView;
+    private TextView mListEmptyTv;
+    private String mTextListEmpty;
 
     /*
     //TODO: Implement it
@@ -30,20 +33,30 @@ public class News extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_news, container,false);
 
+        init();
         setUi();
         populateListView();
 
         return mView;
     }
 
+    private void init() {
+        mTextListEmpty = mView.getResources().getString(R.string.news_empty);
+    }
+
     private void setUi() {
         mListView = (ListView) mView.findViewById(R.id.lv_news);
+        mListEmptyTv = (TextView) mView.findViewById(R.id.tv_listempty);
     }
 
     private void populateListView() {
-        ArrayList<NewInstance> arrayOfUsers = NewInstance.getUsers();
-        NewsAdapter adapter = new NewsAdapter(this.getActivity(), arrayOfUsers);
+        ArrayList<NewsInstance> arrayOfUsers = NewsInstance.getUsers();
 
-        mListView.setAdapter(adapter);
+        if (!arrayOfUsers.isEmpty()) {
+            NewsAdapter adapter = new NewsAdapter(this.getActivity(), arrayOfUsers);
+            mListView.setAdapter(adapter);
+        } else {
+            mListEmptyTv.setText(mTextListEmpty);
+        }
     }
 }
