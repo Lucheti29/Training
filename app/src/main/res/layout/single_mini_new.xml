@@ -4,7 +4,8 @@
     android:layout_height="90dp"
     android:orientation="vertical">
 
-    <View
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ig_new_avatar"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -14,8 +15,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="15dp"
-        android:background="@color/gray"
-        />
+        android:scaleType="center"
+        android:src="@drawable/emptybg"
+        app:riv_corner_radius="2dip"
+        app:riv_border_width="0dip"
+        app:riv_border_color="#333333"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="repeat" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
