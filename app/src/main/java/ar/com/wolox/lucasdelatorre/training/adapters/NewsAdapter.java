@@ -21,24 +21,35 @@ public class NewsAdapter extends ArrayAdapter<NewsInstance> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        ViewHolderItem viewHolder;
         NewsInstance singleNew = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_mini_new, parent, false);
-        }
+            viewHolder = new ViewHolderItem();
 
-        TextView tvName = (TextView) convertView.findViewById(R.id.tv_new_title);
-        TextView tvHome = (TextView) convertView.findViewById(R.id.tv_new_description);
-        ImageView igLike = (ImageView) convertView.findViewById(R.id.ig_new_like);
+            viewHolder.tvName = (TextView) convertView.findViewById(R.id.tv_new_title);
+            viewHolder.tvHome = (TextView) convertView.findViewById(R.id.tv_new_description);
+            viewHolder.igLike = (ImageView) convertView.findViewById(R.id.ig_new_like);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolderItem) convertView.getTag();
+        }
 
         if (singleNew.isLike()) {
-            igLike.setImageDrawable(convertView.getResources().getDrawable(R.drawable.like_on));
+            viewHolder.igLike.setImageDrawable(convertView.getResources().getDrawable(R.drawable.like_on));
         }
 
-        tvName.setText(singleNew.getTitle());
-        tvHome.setText(singleNew.getDescription());
+        viewHolder.tvName.setText(singleNew.getTitle());
+        viewHolder.tvHome.setText(singleNew.getDescription());
 
         return convertView;
+    }
+
+    static class ViewHolderItem {
+        TextView tvName;
+        TextView tvHome;
+        ImageView igLike;
     }
 }
