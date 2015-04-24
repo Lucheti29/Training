@@ -31,6 +31,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.Utils;
 
 public class SlidingTabLayout extends HorizontalScrollView {
@@ -152,9 +153,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (i == mViewPager.getCurrentItem()) {
                 tabView.setSelected(true);
-                ((TextView) tabView).setTextColor(Utils.getColorState(true));
+                ((TextView) tabView).setTextColor(getResources().getColor(R.color.greenwolox));
             } else {
-                ((TextView) tabView).setTextColor(Utils.getColorState(false));
+                ((TextView) tabView).setTextColor(getResources().getColor(R.color.gray));
             }
         }
     }
@@ -230,10 +231,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
                 if (i == mViewPager.getCurrentItem()) {
                     tv.setSelected(true);
-                    tv.setTextColor(Utils.getColorState(true));
+                    tv.setTextColor(getResources().getColor(R.color.greenwolox));
                 } else {
                     tv.setSelected(false);
-                    tv.setTextColor(Utils.getColorState(false));
+                    tv.setTextColor(getResources().getColor(R.color.gray));
                 }
             }
             if (mViewPagerPageChangeListener != null) {

@@ -1,7 +1,6 @@
 package ar.com.wolox.lucasdelatorre.training;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -34,13 +33,5 @@ public class Utils {
         Toast.makeText(activity.getApplicationContext(),
                 activity.getResources().getString(id),
                 Toast.LENGTH_SHORT).show();
-    }
-
-    //TODO: Unhardcode
-    public static int getColorState(boolean state) {
-        if (state) {
-            return Color.parseColor("#88B85E");
-        }
-        return Color.parseColor("#959692");
     }
 }
