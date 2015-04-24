@@ -39,16 +39,17 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //TODO: Test - Delete it
         openBoard();
 
-        isLogged();
+        /*isLogged();
 
         setContentView(R.layout.activity_login);
 
         init();
         setUi();
         populate();
-        setListeners();
+        setListeners();*/
     }
 
     private void init() {
