@@ -47,6 +47,15 @@
                 android:value=".activities.Board" />
         </activity>
 
+        <activity
+            android:name=".activities.NewsDetail"
+            android:label=""
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.Board" />
+        </activity>
+
     </application>
 
 </manifest>

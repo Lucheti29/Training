@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:paddingLeft="10dp">
+
+    <ImageView
+        android:id="@+id/ig_newsdetail_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/back_white" />
+
+    <TextView
+        android:id="@+id/tv_newsdetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/newsdetail_toolbar"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</android.support.v7.widget.Toolbar>
