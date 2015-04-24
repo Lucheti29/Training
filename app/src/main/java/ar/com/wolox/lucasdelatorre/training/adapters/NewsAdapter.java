@@ -47,7 +47,7 @@ public class NewsAdapter extends ArrayAdapter<NewsInstance> {
         return convertView;
     }
 
-    static class ViewHolderItem {
+    private static class ViewHolderItem {
         TextView tvName;
         TextView tvHome;
         ImageView igLike;
