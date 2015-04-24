@@ -33,5 +33,11 @@
     <string name="signup_usernametaken">This email is already taken</string>
     <string name="signup_error">Something went wrong</string>
 
+    <string name="news_empty">No News</string>
+
     <string name="wolox_title">Wolox</string>
+
+    <string name="profile_default_loc">Milano, Italy</string>
+    <string name="profile_default_name">Mario Trusso</string>
+    <string name="profile_default_description">Kun tarkoittaa vei suomuakaan voitaisiin. Lapsilla porhalsi en kymmenta kyllahan kuolleen myrskysi on. Laiva joulu sekin etten pilan ei on. Tuhattakin ai suurtakaan ei se semmoiseen tarkastaen. Heruisi tai rumasti antakaa odottaa loi puhisee tupansa vai. Vietavaksi hartaimman ela voi lintukarit han. Tieda jotta vatsa eli yha asian osaan luvan.</string>
 </resources>
