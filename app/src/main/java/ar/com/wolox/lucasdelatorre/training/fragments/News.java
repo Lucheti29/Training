@@ -25,27 +25,18 @@ public class News extends Fragment {
     private View mView;
     private ListView mListView;
     private TextView mListEmptyTv;
-    private String mTextListEmpty;
     private FloatingActionButton mFab;
     private SwipeRefreshLayout mSwipeView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_news, container,false);
+        mView = inflater.inflate(R.layout.fragment_news, container, false);
 
-        init();
         setUi();
-
-        mFab.attachToListView(mListView);
-
         populate();
         setListeners();
 
         return mView;
-    }
-
-    private void init() {
-        mTextListEmpty = mView.getResources().getString(R.string.news_empty);
     }
 
     private void setUi() {
@@ -56,13 +47,16 @@ public class News extends Fragment {
     }
 
     private void populate() {
+        mFab.attachToListView(mListView);
+
         ArrayList<NewsInstance> arrayOfUsers = NewsInstance.getUsers();
 
-        if (!arrayOfUsers.isEmpty()) {
+        if (arrayOfUsers.isEmpty()) {
+            mListEmptyTv.setVisibility(View.VISIBLE);
+        } else {
+            mListEmptyTv.setVisibility(View.GONE);
             NewsAdapter adapter = new NewsAdapter(this.getActivity(), arrayOfUsers);
             mListView.setAdapter(adapter);
-        } else {
-            mListEmptyTv.setText(mTextListEmpty);
         }
     }
 
