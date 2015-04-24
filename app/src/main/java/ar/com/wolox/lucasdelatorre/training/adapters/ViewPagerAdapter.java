@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.List;
+
 import ar.com.wolox.lucasdelatorre.training.fragments.News;
 import ar.com.wolox.lucasdelatorre.training.fragments.Profile;
 
@@ -12,11 +14,10 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     CharSequence Titles[];
     int NumbOfTabs;
 
-    public ViewPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
+    public ViewPagerAdapter(FragmentManager fm, String[] titles) {
         super(fm);
-
-        this.Titles = mTitles;
-        this.NumbOfTabs = mNumbOfTabsumb;
+        this.Titles = titles;
+        this.NumbOfTabs = titles.length;
     }
 
     @Override

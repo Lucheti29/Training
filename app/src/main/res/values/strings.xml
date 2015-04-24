@@ -33,5 +33,12 @@
     <string name="signup_usernametaken">This email is already taken</string>
     <string name="signup_error">Something went wrong</string>
 
+    <string name="news_empty">No news</string>
+
     <string name="wolox_title">Wolox</string>
+
+    <string-array name="board_tabs">
+        <item>NEWS</item>
+        <item>PROFILE</item>
+    </string-array>
 </resources>

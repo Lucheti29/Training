@@ -5,6 +5,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.tabs.SlidingTabLayout;
 import ar.com.wolox.lucasdelatorre.training.adapters.ViewPagerAdapter;
@@ -28,8 +31,8 @@ public class Board extends ActionBarActivity {
     }
 
     private void init() {
-        CharSequence titles[] = {"NEWS","PROFILE"};
-        mAdapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles, titles.length);
+        String[] titles = getResources().getStringArray(R.array.board_tabs);
+        mAdapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles);
     }
 
     private void setUi() {
