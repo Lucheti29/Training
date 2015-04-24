@@ -34,6 +34,8 @@
     <string name="signup_error">Something went wrong</string>
 
     <string name="news_empty">No news</string>
+    <string name="mininew_title_default">Title</string>
+    <string name="mininew_descr_default">Description</string>
 
     <string name="wolox_title">Wolox</string>
 

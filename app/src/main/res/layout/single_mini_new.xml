@@ -37,7 +37,7 @@
             android:layout_alignParentTop="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
-            android:text="Title" />
+            android:text="@string/mininew_title_default" />
 
         <TextView
             android:id="@+id/tv_new_description"
@@ -46,7 +46,7 @@
             android:layout_below="@+id/tv_new_title"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/gray"
-            android:text="Description" />
+            android:text="@string/mininew_descr_default" />
 
     </RelativeLayout>
 
