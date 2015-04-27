@@ -1,16 +1,18 @@
 package ar.com.wolox.lucasdelatorre.training.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.User;
@@ -38,17 +40,14 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO: Test - Delete it
-        openBoard();
-
-        /*isLogged();
+        isLogged();
 
         setContentView(R.layout.activity_login);
 
         init();
         setUi();
         populate();
-        setListeners();*/
+        setListeners();
     }
 
     private void init() {
@@ -109,9 +108,13 @@ public class Login extends Activity {
     }
 
     private void saveCredentials() {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(Utils.TOKEN_KEY, mUser.getSessionToken());
+
+        Gson gson = new Gson();
+        String json = gson.toJson(mUser);
+        editor.putString(Utils.USER_KEY, json);
         editor.commit();
     }
 
@@ -141,10 +144,14 @@ public class Login extends Activity {
     }
 
     private void isLogged() {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        String token = sharedPref.getString(Utils.TOKEN_KEY, "");
+        SharedPreferences sharedPref = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        String jsonUser = sharedPref.getString(Utils.USER_KEY, "");
 
-        if (token.isEmpty()) { return; }
+        Gson gson = new Gson();
+        String token = gson.fromJson(jsonUser, User.class).getSessionToken();
+
+        if (token.isEmpty()) return;
 
         LoginService tokenTry = RestApiAdapterToken.getAdapter(token).create(LoginService.class);
         tokenTry.checkToken(new Callback<User>() {

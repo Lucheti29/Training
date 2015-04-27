@@ -13,7 +13,8 @@ public class Utils {
     public final static String CODE_INVALID_TOKEN = "209";
     public final static String CODE_USER_TAKEN = "202";
 
-    public final static String TOKEN_KEY = "SessionToken";
+    public final static String USER_KEY = "UserSaved";
+    public final static String IMAGE_KEY = "ImageKey";
 
     public static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -42,5 +43,12 @@ public class Utils {
             return Color.parseColor("#88B85E");
         }
         return Color.parseColor("#959692");
+    }
+
+    public static boolean isValidImageUrl(String url) {
+        if (url != null && !url.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

@@ -2,23 +2,23 @@ package ar.com.wolox.lucasdelatorre.training;
 
 public class User {
 
-    private String objectId;
-    private String username;
-    private String authData;
-    private String emailVerified;
-    private String cover;
-    private String description;
-    private String email;
-    private String location;
-    private String name;
-    private String phone;
-    private String picture;
-    private String createdAt;
-    private String updatedAt;
-    private String password;
-    private String sessionToken;
-    private String code;
-    private String error;
+    private String objectId = "";
+    private String username = "";
+    private String authData = "";
+    private String emailVerified = "";
+    private String cover = "";
+    private String description = "";
+    private String email = "";
+    private String location = "";
+    private String name = "";
+    private String phone = "";
+    private String picture = "";
+    private String createdAt = "";
+    private String updatedAt = "";
+    private String password = "";
+    private String sessionToken = "";
+    private String code = "";
+    private String error = "";
 
     public User(String username, String password) {
         this.username = username;
