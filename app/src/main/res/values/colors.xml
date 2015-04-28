@@ -12,12 +12,14 @@
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
     <item name="white" type="color">#FFFFFFFF</item>
+    <item name="actionbargray" type="color">#FFFDFBFA</item>
     <item name="alphawhite" type="color">#96FFFFFF</item>
     <item name="lightgray" type="color">#FFB5B7B5</item>
-    <item name="gray" type="color">#FF808080</item>
+    <item name="gray" type="color">#FF959692</item>
     <item name="stronggray" type="color">#FF525352</item>
     <item name="black" type="color">#FF000000</item>
     <item name="border" type="color">#FFD6D6D5</item>
+    <item name="greenwolox" type="color">#FF88B85E</item>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -38,5 +40,6 @@
         <item>@color/stronggray</item>
         <item>@color/black</item>
         <item>@color/border</item>
+        <item>@color/greenwolox</item>
     </integer-array>
 </resources>

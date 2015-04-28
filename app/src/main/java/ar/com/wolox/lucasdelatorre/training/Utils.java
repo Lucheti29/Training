@@ -18,6 +18,11 @@ public class Utils {
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    public static final int[] TAB_IMAGES = {
+            R.drawable.icon_news,
+            R.drawable.icon_profile
+    };
+
     public static boolean validate(final String hex, final String stringPattern) {
         Pattern pattern = Pattern.compile(stringPattern);
         Matcher matcher = pattern.matcher(hex);

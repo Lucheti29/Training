@@ -22,7 +22,7 @@
 
         <activity
             android:name=".activities.Board"
-            android:label="@string/login_label"
+            android:label=""
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
