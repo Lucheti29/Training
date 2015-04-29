@@ -43,6 +43,15 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/news_empty" />
 
+        <ImageView
+            android:id="@+id/iv_news_error"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:src="@drawable/error"
+            android:scaleType="center" />
+
     </FrameLayout>
 
 </RelativeLayout>
