@@ -5,9 +5,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.tabs.SlidingTabLayout;
 import ar.com.wolox.lucasdelatorre.training.adapters.ViewPagerAdapter;
