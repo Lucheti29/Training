@@ -1,5 +1,6 @@
 package ar.com.wolox.lucasdelatorre.training.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -21,9 +22,10 @@ import ar.com.wolox.lucasdelatorre.training.User;
 import ar.com.wolox.lucasdelatorre.training.Utils;
 import ar.com.wolox.lucasdelatorre.training.instances.NewsArrayInstance;
 import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapter;
+import ar.com.wolox.lucasdelatorre.training.activities.Create_news;
+import ar.com.wolox.lucasdelatorre.training.instances.NewsInstance;
 import ar.com.wolox.lucasdelatorre.training.adapters.NewsAdapter;
 import ar.com.wolox.lucasdelatorre.training.R;
-import ar.com.wolox.lucasdelatorre.training.instances.NewsInstance;
 import ar.com.wolox.lucasdelatorre.training.services.NewsService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -88,6 +90,13 @@ public class News extends Fragment {
     }
 
     private void setListeners() {
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Create_news.class);
+                startActivity(intent);
+            }
+        });
 
         mImageError.setOnClickListener(new View.OnClickListener() {
             @Override

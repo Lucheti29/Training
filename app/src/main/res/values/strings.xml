@@ -47,4 +47,8 @@
     <string name="profile_default_loc">Milano, Italy</string>
     <string name="profile_default_name">Mario Trusso</string>
     <string name="profile_default_description">Kun tarkoittaa vei suomuakaan voitaisiin. Lapsilla porhalsi en kymmenta kyllahan kuolleen myrskysi on. Laiva joulu sekin etten pilan ei on. Tuhattakin ai suurtakaan ei se semmoiseen tarkastaen. Heruisi tai rumasti antakaa odottaa loi puhisee tupansa vai. Vietavaksi hartaimman ela voi lintukarit han. Tieda jotta vatsa eli yha asian osaan luvan.</string>
+
+    <string name="create_hint_title">Title</string>
+    <string name="create_hint_description">Add a description</string>
+    <string name="create_addimage">+ Image</string>
 </resources>
