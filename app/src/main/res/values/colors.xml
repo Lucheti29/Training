@@ -20,6 +20,7 @@
     <item name="black" type="color">#FF000000</item>
     <item name="border" type="color">#FFD6D6D5</item>
     <item name="greenwolox" type="color">#FF88B85E</item>
+    <item name="verylightgray" type="color">#FFE4E4E3</item>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -41,5 +42,6 @@
         <item>@color/black</item>
         <item>@color/border</item>
         <item>@color/greenwolox</item>
+        <item>@color/verylightgray</item>
     </integer-array>
 </resources>
