@@ -1,5 +1,6 @@
 package ar.com.wolox.lucasdelatorre.training.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,9 +23,10 @@ import ar.com.wolox.lucasdelatorre.training.User;
 import ar.com.wolox.lucasdelatorre.training.Utils;
 import ar.com.wolox.lucasdelatorre.training.instances.NewsArrayInstance;
 import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapter;
+import ar.com.wolox.lucasdelatorre.training.activities.NewsDetail;
+import ar.com.wolox.lucasdelatorre.training.instances.NewsInstance;
 import ar.com.wolox.lucasdelatorre.training.adapters.NewsAdapter;
 import ar.com.wolox.lucasdelatorre.training.R;
-import ar.com.wolox.lucasdelatorre.training.instances.NewsInstance;
 import ar.com.wolox.lucasdelatorre.training.services.NewsService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -174,6 +177,16 @@ public class News extends Fragment {
             public void failure(RetrofitError error) {
                 handleVisibility(false);
                 setRefreshing(false);
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                Intent intent = new Intent(getActivity(), NewsDetail.class);
+                startActivity(intent);
             }
         });
     }
