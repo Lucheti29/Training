@@ -1,5 +1,6 @@
 package ar.com.wolox.lucasdelatorre.training.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 
 import ar.com.wolox.lucasdelatorre.training.User;
 import ar.com.wolox.lucasdelatorre.training.Utils;
+import ar.com.wolox.lucasdelatorre.training.activities.CreateNews;
+import ar.com.wolox.lucasdelatorre.training.activities.NewsDetail;
 import ar.com.wolox.lucasdelatorre.training.instances.NewsArrayInstance;
 import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapter;
 import ar.com.wolox.lucasdelatorre.training.adapters.NewsAdapter;
@@ -88,6 +92,23 @@ public class News extends Fragment {
     }
 
     private void setListeners() {
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                Intent intent = new Intent(getActivity(), NewsDetail.class);
+                startActivity(intent);
+            }
+        });
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CreateNews.class);
+                startActivity(intent);
+            }
+        });
 
         mImageError.setOnClickListener(new View.OnClickListener() {
             @Override
