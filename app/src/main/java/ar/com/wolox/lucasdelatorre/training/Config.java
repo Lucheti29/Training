@@ -9,4 +9,6 @@ public class Config {
     public static String PARSE_REST_API_KEY = "c2Vi5MRQx5WxhppghBZy4KYIGjQ6U0CeLAY6UHXO";
     public static String PARSE_TOKEN_HEADER = "X-Parse-Session-Token";
 
+    public static int LIST_OFFSET = 2;
+
 }

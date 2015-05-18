@@ -65,6 +65,7 @@ public class Login extends Activity {
     private void populate() {
         mTermsTv.setText(Html.fromHtml(getString(R.string.login_terms)));
         mTermsTv.setMovementMethod(LinkMovementMethod.getInstance());
+        mPasswordEt.setTypeface(mUsernameEt.getTypeface());
     }
 
     private void setListeners() {

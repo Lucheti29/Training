@@ -6,13 +6,13 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -22,10 +22,9 @@ import java.util.ArrayList;
 import ar.com.wolox.lucasdelatorre.training.User;
 import ar.com.wolox.lucasdelatorre.training.Utils;
 import ar.com.wolox.lucasdelatorre.training.activities.CreateNews;
-import ar.com.wolox.lucasdelatorre.training.activities.NewsDetail;
+import ar.com.wolox.lucasdelatorre.training.adapters.NewsRecyclerViewAdapter;
 import ar.com.wolox.lucasdelatorre.training.instances.NewsArrayInstance;
 import ar.com.wolox.lucasdelatorre.training.api.RestApiAdapter;
-import ar.com.wolox.lucasdelatorre.training.adapters.NewsAdapter;
 import ar.com.wolox.lucasdelatorre.training.R;
 import ar.com.wolox.lucasdelatorre.training.instances.NewsInstance;
 import ar.com.wolox.lucasdelatorre.training.services.NewsService;
@@ -36,20 +35,21 @@ import retrofit.client.Response;
 public class News extends Fragment {
 
     private static String sSort = "-createdAt";
-    private static int sListViewOffset = 8;
+    private static int sListViewOffset = 10;
     private View mView;
-    private ListView mListView;
     private TextView mListEmptyTv;
+    private RecyclerView mRecyclerView;
+    private NewsRecyclerViewAdapter mNewsRecyclerViewAdapter;
+    private LinearLayoutManager mLinearLayoutManager;
     private ImageView mImageError;
     private FloatingActionButton mFab;
     private SwipeRefreshLayout mSwipeView;
     private ArrayList<NewsInstance> mNews;
     private int mActualPosition;
     private User mUser;
-    private NewsAdapter mAdapter;
     private Handler mHandler;
     private boolean mIsRequested; // To avoid simultaneous callbacks
-    private boolean listEnd; // To avoid unnecessary callbacks when you reach the end list
+    private boolean mListEnd; // To avoid unnecessary callbacks when you reach the end list
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,41 +68,34 @@ public class News extends Fragment {
         mActualPosition = 0;
         mUser = Utils.getUserSaved(getActivity());
         setRefreshing(false);
-        mAdapter = new NewsAdapter(getActivity(), mNews);
         mHandler = new Handler();
-        listEnd = false;
+        mListEnd = false;
+        mLinearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        mNewsRecyclerViewAdapter = new NewsRecyclerViewAdapter(getActivity(), mNews);
     }
 
     private void setUi() {
-        mListView = (ListView) mView.findViewById(R.id.lv_news);
-        mListEmptyTv = (TextView) mView.findViewById(R.id.tv_listempty);
+        mRecyclerView = (RecyclerView) mView.findViewById(R.id.recylerView_news);
         mFab = (FloatingActionButton) mView.findViewById(R.id.fab);
         mImageError = (ImageView) mView.findViewById(R.id.iv_news_error);
         mSwipeView = (SwipeRefreshLayout) mView.findViewById(R.id.swipe);
+        mListEmptyTv = (TextView) mView.findViewById(R.id.tv_listempty);
 
         mSwipeView.setColorSchemeResources(R.color.bluewolox, R.color.greenwolox,
                 R.color.orange, R.color.red);
     }
 
     private void populate() {
-        mListView.setAdapter(mAdapter);
-        mFab.attachToListView(mListView);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mNewsRecyclerViewAdapter.setOnViewHolderListener(mViewHolderListener);
+        mRecyclerView.setAdapter(mNewsRecyclerViewAdapter);
+        mFab.attachToRecyclerView(mRecyclerView);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         doACallback();
     }
 
     private void setListeners() {
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-
-                Intent intent = new Intent(getActivity(), NewsDetail.class);
-                startActivity(intent);
-            }
-        });
-
         mFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), CreateNews.class);
@@ -125,28 +118,14 @@ public class News extends Fragment {
                 mHandler.post(refreshing);
             }
         });
-
-        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-
-                boolean enable = isTheFirstElement();
-                mSwipeView.setEnabled(enable);
-
-                if (!enable && (firstVisibleItem + visibleItemCount
-                                + sListViewOffset) >= totalItemCount) {
-                        doACallback();
-                    }
-                }
-        });
     }
+
+    NewsRecyclerViewAdapter.OnViewHolderListener mViewHolderListener = new NewsRecyclerViewAdapter.OnViewHolderListener() {
+        @Override
+        public void onNextPageRequired() {
+            doACallback();
+        }
+    };
 
     private final Runnable refreshing = new Runnable(){
         public void run(){
@@ -164,7 +143,7 @@ public class News extends Fragment {
     };
 
     private void doACallback() {
-        if (isRefreshing() || listEnd) return;
+        if (isRefreshing() || mListEnd) return;
 
         setRefreshing(true);
 
@@ -176,7 +155,7 @@ public class News extends Fragment {
             public void success(NewsArrayInstance newsArray, Response response) {
                 int resultLength = newsArray.getResults().length;
 
-                if (resultLength == 0) listEnd = true;
+                if (resultLength == 0) mListEnd = true;
 
                 mActualPosition = mActualPosition + resultLength;
 
@@ -186,9 +165,9 @@ public class News extends Fragment {
                 }
 
                 handleVisibility(true);
-
-                ((NewsAdapter) mListView.getAdapter()).notifyDataSetChanged();
                 setRefreshing(false);
+
+                mNewsRecyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -199,18 +178,10 @@ public class News extends Fragment {
         });
     }
 
-    private boolean isTheFirstElement() {
-        if (mListView != null && !mNews.isEmpty() && mListView.getChildCount() > 0) {
-            return mListView.getFirstVisiblePosition() == 0
-                    && mListView.getChildAt(0).getTop() == 0;
-        }
-        return false;
-    }
-
     private void refresh() {
         mNews.clear();
         mActualPosition = 0;
-        listEnd = false;
+        mListEnd = false;
         doACallback();
     }
 
@@ -224,8 +195,8 @@ public class News extends Fragment {
 
     private void handleVisibility(boolean success) {
         if (success) {
-            if (mListView.getVisibility() != View.VISIBLE) {
-                mListView.setVisibility(View.VISIBLE);
+            if (mRecyclerView.getVisibility() != View.VISIBLE) {
+                mRecyclerView.setVisibility(View.VISIBLE);
                 mImageError.setVisibility(View.GONE);
             }
 
@@ -235,7 +206,7 @@ public class News extends Fragment {
                 mListEmptyTv.setVisibility(View.GONE);
             }
         } else {
-            mListView.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.GONE);
             mListEmptyTv.setVisibility(View.GONE);
             mImageError.setVisibility(View.VISIBLE);
         }
