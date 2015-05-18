@@ -65,6 +65,9 @@ public class Signup extends ActionBarActivity {
             mDivider.setElevation(5);
         }
         //Else -> Implement image
+
+        mPasswordEt.setTypeface(mUsernameEt.getTypeface());
+        mCPasswordEt.setTypeface(mUsernameEt.getTypeface());
     }
 
     private void setListeners() {

@@ -54,15 +54,13 @@
             android:id="@+id/tv_new_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/ig_new_like"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="15dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textAlignment="center"
-            android:text="15m"/>
+            android:text="15m"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <ImageView
             android:id="@+id/ig_new_like"
@@ -71,7 +69,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginRight="25dp"
             android:src="@drawable/like_off"/>
 

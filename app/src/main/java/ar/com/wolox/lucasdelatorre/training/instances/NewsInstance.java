@@ -14,6 +14,7 @@ public class NewsInstance {
     private String createdAt;
     private String updatedAt;
     private String diffTime;
+    private boolean isLoader;
 
     public void initialize(String reader) {
         this.like = false;
@@ -102,5 +103,13 @@ public class NewsInstance {
 
     public String getDiffTime() {
         return diffTime;
+    }
+
+    public boolean isLoader() {
+        return isLoader;
+    }
+
+    public void setLoader(boolean value) {
+        isLoader = value;
     }
 }
